@@ -159,20 +159,37 @@ function Index() {
 
       <EyeTest />
 
-      {/* Contact */}
-      <section id="contact" className="mx-auto max-w-6xl px-5 py-20">
+      {/* Store */}
+      <section id="store" className="mx-auto max-w-6xl px-5 py-20">
         <div className="rounded-[2rem] bg-foreground p-10 text-background md:p-14">
-          <h2 className="font-display text-4xl font-bold">Visit or message us anytime</h2>
-          <p className="mt-3 opacity-75">Book your free eye test or order frames directly on WhatsApp.</p>
+          <p className="text-sm font-semibold uppercase tracking-widest opacity-70">Not an online-only shop</p>
+          <h2 className="mt-2 font-display text-4xl font-bold">Visit our store to get clear picture</h2>
+          <p className="mt-3 max-w-xl opacity-75">
+            A screen can't tell you how a frame sits on your face. Walk in, try them on, get your free
+            eye test done in person and leave seeing clearly.
+          </p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <div><p className="text-xs uppercase opacity-60">Owner</p><p className="font-semibold">Abdus Sattar</p></div>
             <a href="tel:+919060190538"><p className="text-xs uppercase opacity-60">Phone</p><p className="font-semibold">+91 90601 90538</p></a>
             <a href="mailto:abdusnew@gmail.com"><p className="text-xs uppercase opacity-60">Email</p><p className="font-semibold">abdusnew@gmail.com</p></a>
           </div>
-          <a href={wa("Hi Eyemela! I want to book a free eye test.")} target="_blank" rel="noreferrer"
-            className="mt-8 inline-block rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground">
-            Chat on WhatsApp
-          </a>
+          {STORE.address && (
+            <div className="mt-6 rounded-2xl border border-background/20 p-5">
+              <p className="text-xs uppercase opacity-60">Store</p>
+              <p className="font-semibold">{STORE.address}</p>
+              {STORE.hours && <p className="mt-1 text-sm opacity-75">{STORE.hours}</p>}
+            </div>
+          )}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href={directions} target="_blank" rel="noreferrer"
+              className="inline-block rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground">
+              Get Directions
+            </a>
+            <a href={wa("Hi Eyemela! I want to visit your store. Please share the address and timings.")} target="_blank" rel="noreferrer"
+              className="inline-block rounded-full border-2 border-background/30 px-6 py-3 font-semibold text-background">
+              Ask on WhatsApp
+            </a>
+          </div>
         </div>
       </section>
 
@@ -203,9 +220,9 @@ function EyeTest() {
   const reset = () => { setStep("intro"); setRow(0); setLastSeen(-1); };
   const score = lastSeen + 1;
   const result =
-    score >= 6 ? { t: "Great vision!", d: "Your eyes look healthy. A yearly checkup is still recommended." }
-    : score >= 4 ? { t: "Mild difficulty", d: "You may need a mild prescription. Book a free professional eye test." }
-    : { t: "Get your eyes checked", d: "You had trouble with smaller letters. Please book a free eye test soon." };
+    score >= 6 ? { t: "Great vision!", d: "Your eyes look healthy. A yearly checkup is still recommended — drop by our store." }
+    : score >= 4 ? { t: "Mild difficulty", d: "You may need a mild prescription. Visit our store for a free professional eye test." }
+    : { t: "Get your eyes checked", d: "You had trouble with smaller letters. Please visit our store for a free eye test soon." };
 
   return (
     <section id="eye-test" className="bg-secondary py-20">
@@ -220,7 +237,7 @@ function EyeTest() {
           <ul className="mt-6 space-y-2 text-sm">
             <li>✓ Takes under a minute</li>
             <li>✓ No signup needed</li>
-            <li>✓ Free in-store / home eye checkup</li>
+            <li>✓ Free eye checkup at our store</li>
           </ul>
           <p className="mt-6 text-xs text-muted-foreground">This screening is not a medical diagnosis.</p>
         </div>
@@ -258,12 +275,20 @@ function EyeTest() {
               <p className="text-sm text-muted-foreground">You read {score} of {rows.length} lines</p>
               <h3 className="mt-2 font-display text-3xl font-bold text-primary">{result.t}</h3>
               <p className="mt-3 text-muted-foreground">{result.d}</p>
-              <a href={wa(`Hi Eyemela! I took the online eye test and read ${score}/${rows.length} lines. I want to book a FREE eye test.`)}
-                target="_blank" rel="noreferrer"
-                className="mt-6 inline-block rounded-full bg-whatsapp px-6 py-3 font-semibold text-primary-foreground">
-                Book Free Eye Test on WhatsApp
-              </a>
-              <button onClick={reset} className="mt-3 block w-full text-sm underline">Retake test</button>
+              <p className="mt-5 rounded-2xl bg-secondary px-5 py-4 font-display text-xl font-bold text-secondary-foreground">
+                Visit our store to get clear picture.
+              </p>
+              <div className="mt-5 flex flex-col gap-3">
+                <a href={wa(`Hi Eyemela! I took the online eye test and read ${score}/${rows.length} lines. I want to book a FREE eye test.`)}
+                  target="_blank" rel="noreferrer"
+                  className="rounded-full bg-whatsapp px-6 py-3 font-semibold text-primary-foreground">
+                  Book Free Eye Test on WhatsApp
+                </a>
+                <a href="#store" className="rounded-full border-2 border-foreground px-6 py-3 font-semibold">
+                  Visit Our Store
+                </a>
+                <button onClick={reset} className="text-sm underline">Retake test</button>
+              </div>
             </div>
           )}
         </div>

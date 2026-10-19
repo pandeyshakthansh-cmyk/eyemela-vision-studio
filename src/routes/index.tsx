@@ -221,8 +221,8 @@ function EyeTest() {
             <div className="text-center">
               <p className="text-xs uppercase tracking-widest text-muted-foreground">Line {row + 1} of {rows.length}</p>
               <div className="flex h-40 items-center justify-center">
-                <span className="font-mono font-bold tracking-[0.3em]" style={{ fontSize: rows[row].size }}>
-                  {rows[row].letters}
+                <span className="font-mono font-bold tracking-[0.3em]" style={{ fontSize: rows[row]!.size }}>
+                  {rows[row]!.letters}
                 </span>
               </div>
               <p className="mb-4 font-semibold">Can you read these letters clearly?</p>

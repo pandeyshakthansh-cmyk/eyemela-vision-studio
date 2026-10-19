@@ -6,10 +6,10 @@ import frames from "@/assets/frames.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Eyemela — Stylish Eyewear & Free Eye Test" },
-      { name: "description", content: "Shop trendy frames, sunglasses & lenses at Eyemela. Take a free online eye test and book on WhatsApp." },
-      { property: "og:title", content: "Eyemela — Stylish Eyewear & Free Eye Test" },
-      { property: "og:description", content: "Trendy frames, lenses and a free eye test. Order on WhatsApp." },
+      { title: "Eyemela — Stylish Eyewear, Free Eye Test & In-Store Trial" },
+      { name: "description", content: "Take a free eye test online, then visit the Eyemela store to try frames on and get a clear picture. Book on WhatsApp." },
+      { property: "og:title", content: "Eyemela — Stylish Eyewear, Free Eye Test & In-Store Trial" },
+      { property: "og:description", content: "Free eye test, trendy frames, and a store you can actually walk into. Visit Eyemela." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -19,6 +19,16 @@ export const Route = createFileRoute("/")({
 
 const WA = "919060190538";
 const wa = (msg: string) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+
+// Fill in the real shop details below — anything left blank stays hidden on the page.
+const STORE = {
+  name: "Eyemela",
+  address: "",
+  hours: "",
+};
+const directions = STORE.address
+  ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${STORE.name} ${STORE.address}`)}`
+  : wa("Hi Eyemela! Please share your store address and directions.");
 
 const products = [
   { name: "Classic Round", color: "Matte Black", price: 999, mrp: 1999, pos: "0% 0%" },
@@ -48,7 +58,7 @@ function Index() {
           <nav className="hidden gap-8 text-sm md:flex">
             <a href="#products" className="hover:text-primary">Frames</a>
             <a href="#eye-test" className="hover:text-primary">Free Eye Test</a>
-            <a href="#contact" className="hover:text-primary">Contact</a>
+            <a href="#store" className="font-semibold hover:text-primary">Visit Store</a>
           </nav>
           <a href={wa("Hi Eyemela! I want to know more.")} target="_blank" rel="noreferrer"
             className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground">
@@ -73,10 +83,16 @@ function Index() {
             <a href="#eye-test" className="rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-lg">
               Take Free Eye Test
             </a>
+            <a href="#store" className="rounded-full bg-secondary px-6 py-3 font-semibold text-secondary-foreground">
+              Visit Our Store
+            </a>
             <a href="#products" className="rounded-full border-2 border-foreground px-6 py-3 font-semibold">
               Shop Frames
             </a>
           </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            We're not online-only — come try every frame on in person.
+          </p>
           <div className="mt-10 flex gap-8 text-sm">
             <div><b className="block font-display text-2xl">10k+</b>Happy eyes</div>
             <div><b className="block font-display text-2xl">500+</b>Frame styles</div>
@@ -97,7 +113,7 @@ function Index() {
       {/* Features strip */}
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-5 py-8 text-center text-sm md:grid-cols-4">
-          {["Free Eye Test", "Free Home Delivery", "7-Day Easy Returns", "1 Year Warranty"].map((t) => (
+          {["Free Eye Test", "Try Frames In Store", "7-Day Easy Returns", "1 Year Warranty"].map((t) => (
             <div key={t} className="font-semibold">✦ {t}</div>
           ))}
         </div>
@@ -110,7 +126,9 @@ function Index() {
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Bestsellers</p>
             <h2 className="mt-2 font-display text-4xl font-bold">Frames you'll love</h2>
           </div>
-          <p className="max-w-sm text-muted-foreground">Every frame comes with free anti-glare lenses.</p>
+          <p className="max-w-sm text-muted-foreground">
+            Every frame comes with free anti-glare lenses — and you can try them all on at our store.
+          </p>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((p) => (

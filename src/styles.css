@@ -67,6 +67,10 @@
 :root {
   --radius: 0.75rem;
   --whatsapp: oklch(0.68 0.17 150);
+  --campaign-mint: oklch(0.87 0.035 160);
+  --campaign-rose: oklch(0.83 0.065 15);
+  --campaign-ink: oklch(0.2 0.02 200);
+  --campaign-control: oklch(0.995 0.005 85 / 88%);
   --background: oklch(0.975 0.012 85);
   --foreground: oklch(0.2 0.02 200);
   --card: oklch(0.995 0.005 85);
@@ -146,4 +150,46 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+.eyewear-opening { letter-spacing: 0; }
+.eyewear-campaign { position: relative; height: 460px; overflow: hidden; color: var(--campaign-ink); }
+.eyewear-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 800ms ease, visibility 800ms; }
+.eyewear-slide--everyday { background: var(--campaign-mint); }
+.eyewear-slide--sunshine { background: var(--campaign-rose); }
+.eyewear-slide.is-active { opacity: 1; visibility: visible; }
+.eyewear-campaign-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.eyewear-copy { position: relative; padding-top: 75px; }
+.eyewear-brand { font-size: 64px; line-height: 1.05; }
+.eyewear-headline { font-size: 30px; line-height: 1.25; }
+.eyewear-description { max-width: 340px; }
+.eyewear-carousel-controls { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 2px; background: var(--campaign-control); border-radius: 30px; padding: 2px 7px; }
+.eyewear-dot { display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--campaign-ink); opacity: 0.25; transition: width 250ms, opacity 250ms; }
+.eyewear-dot.is-active { opacity: 1; width: 19px; border-radius: 5px; }
+.eyewear-marquee { overflow: hidden; padding-bottom: 18px; }
+.eyewear-style-track { display: flex; width: max-content; animation: eyewear-scroll 38s linear infinite; }
+.eyewear-style-group { display: flex; gap: 18px; padding-right: 18px; }
+.eyewear-style-item { width: 230px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--background); }
+.eyewear-frame-image { height: 110px; width: 100%; background-size: 200% 200%; background-repeat: no-repeat; border-radius: 4px; margin-bottom: 8px; transition: transform 300ms; }
+.eyewear-style-item:hover .eyewear-frame-image { transform: scale(1.04); }
+.eyewear-marquee:hover .eyewear-style-track, .eyewear-marquee:focus-within .eyewear-style-track, .eyewear-marquee.is-paused .eyewear-style-track { animation-play-state: paused; }
+@keyframes eyewear-scroll { to { transform: translateX(-33.333333%); } }
+@media (min-width: 1500px) { .eyewear-campaign { height: 500px; } .eyewear-campaign-photo { object-position: center 35%; } }
+@media (max-width: 767px) {
+  .eyewear-campaign { height: 480px; }
+  .eyewear-campaign-photo { top: auto; bottom: 0; height: 265px; object-position: right center; }
+  .eyewear-copy { padding-top: 24px; }
+  .eyewear-copy > p:first-child { font-size: 10px; }
+  .eyewear-brand { font-size: 42px; }
+  .eyewear-headline { font-size: 23px; }
+  .eyewear-description { max-width: 310px; margin-top: 8px; }
+  .eyewear-copy > div { margin-top: 13px; }
+  .eyewear-carousel-controls { bottom: 10px; }
+  .eyewear-style-item { width: 158px; padding: 8px 10px; }
+  .eyewear-frame-image { height: 78px; }
+  .eyewear-style-group { gap: 10px; padding-right: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eyewear-slide, .eyewear-frame-image, .eyewear-dot { transition: none; }
+  .eyewear-style-track { animation: none; }
 }

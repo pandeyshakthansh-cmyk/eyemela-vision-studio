@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import hero from "@/assets/hero.jpg";
 import frames from "@/assets/frames.jpg";
+import { EyewearHero } from "@/components/eyewear-hero";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -67,48 +67,7 @@ function Index() {
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 md:grid-cols-2 md:py-20">
-        <div>
-          <span className="inline-block rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent-foreground">
-            Free eye test for everyone
-          </span>
-          <h1 className="mt-5 font-display text-5xl font-bold leading-[1.05] md:text-6xl">
-            See clearly.<br />Look <em className="text-primary">brilliant.</em>
-          </h1>
-          <p className="mt-5 max-w-md text-lg text-muted-foreground">
-            Trendy frames, premium lenses and a free eye checkup — all at prices you'll love.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#eye-test" className="rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-lg">
-              Take Free Eye Test
-            </a>
-            <a href="#store" className="rounded-full bg-secondary px-6 py-3 font-semibold text-secondary-foreground">
-              Visit Our Store
-            </a>
-            <a href="#products" className="rounded-full border-2 border-foreground px-6 py-3 font-semibold">
-              Shop Frames
-            </a>
-          </div>
-          <p className="mt-4 text-sm text-muted-foreground">
-            We're not online-only — come try every frame on in person.
-          </p>
-          <div className="mt-10 flex gap-8 text-sm">
-            <div><b className="block font-display text-2xl">10k+</b>Happy eyes</div>
-            <div><b className="block font-display text-2xl">500+</b>Frame styles</div>
-            <div><b className="block font-display text-2xl">₹0</b>Eye test</div>
-          </div>
-        </div>
-        <div className="relative">
-          <div className="absolute -inset-3 -z-10 rotate-3 rounded-[2rem] bg-secondary" />
-          <img src={hero} alt="Woman wearing Eyemela glasses" width={1024} height={1152}
-            className="aspect-[4/5] w-full rounded-[2rem] object-cover" />
-          <div className="absolute -bottom-5 -left-4 rounded-2xl bg-card px-5 py-3 shadow-xl">
-            <p className="text-xs text-muted-foreground">Starting at</p>
-            <p className="font-display text-2xl font-bold text-primary">₹899</p>
-          </div>
-        </div>
-      </section>
+      <EyewearHero />
 
       {/* Features strip */}
       <section className="bg-primary text-primary-foreground">
